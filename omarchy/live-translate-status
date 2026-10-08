@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Bar status for ~/Work/live-translate: lit icon while it's listening.
+if pgrep -f '^\S*python[0-9.]* live_translate\.py' >/dev/null; then
+  echo '{"text":"󰗊","tooltip":"Live translate: listening — click to stop","class":"active"}'
+else
+  echo '{"text":"󰗊","tooltip":"Live translate (Chinese → English) — click to start","class":"inactive"}'
+fi

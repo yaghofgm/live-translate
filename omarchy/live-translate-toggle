@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Start live translation in a floating terminal, or stop it if it's already running.
+if pgrep -f '^\S*python[0-9.]* live_translate\.py' >/dev/null; then
+  pkill -INT -f '^\S*python[0-9.]* live_translate\.py'
+else
+  setsid uwsm-app -- xdg-terminal-exec --app-id=org.omarchy.terminal --title="Live Translate" \
+    -e bash -c '"${LIVE_TRANSLATE_DIR:-$HOME/Work/live-translate}/start.sh" --asr qwen || { echo; read -rp "Exited with an error — press Enter to close"; }' &
+fi
